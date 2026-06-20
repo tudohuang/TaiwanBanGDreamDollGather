@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>全台 BanG Dream 娃聚地圖</title>
+  <meta name="description" content="收集全台灣的 BanG Dream 娃聚資訊，可用地圖、日曆與條件篩選查詢。" />
+  <meta property="og:title" content="娃聚地圖｜全台 BanG Dream 娃娃聚會" />
+  <meta property="og:description" content="把散落各處的娃聚，編成一份索引。用地圖找、用日曆排，帶上你的娃一起去。" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#f5f1e8" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="masthead">
+        <div class="mast-left">
+          <p class="mast-kicker">BanG Dream! <span class="spark" aria-hidden="true">✦</span> 全台娃娃聚會</p>
+          <h1 id="site-title"><span class="brand-name">娃聚地圖</span></h1>
+        </div>
+        <a id="submit-btn" class="submit-link" href="#" target="_blank" rel="noopener" hidden>投稿娃聚 <span aria-hidden="true">→</span></a>
+      </div>
+      <p id="site-subtitle" class="subtitle">把散落各處的娃聚，編成一份索引。</p>
+      <div class="band-stripe" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="filters" aria-label="篩選">
+      <input type="search" id="search" placeholder="搜尋名稱 / 地點 / 主辦…" autocomplete="off" />
+      <select id="filter-region"><option value="">全部地區</option></select>
+      <select id="filter-topic"><option value="">全部主題</option></select>
+      <select id="filter-type"><option value="">全部性質</option></select>
+      <select id="filter-price">
+        <option value="">不限價錢</option>
+        <option value="free">免費</option>
+        <option value="paid">需付費</option>
+      </select>
+      <label class="upcoming-toggle">
+        <input type="checkbox" id="filter-upcoming" checked /> 只看未來場次
+      </label>
+      <button id="reset-filters" class="link-btn" type="button">清除篩選</button>
+    </section>
+
+    <nav class="view-tabs" role="tablist">
+      <button class="tab active" data-view="list" role="tab">列表</button>
+      <button class="tab" data-view="map" role="tab">地圖</button>
+      <button class="tab" data-view="calendar" role="tab">日曆</button>
+    </nav>
+
+    <p id="result-count" class="result-count"></p>
+
+    <section id="view-list" class="view"></section>
+
+    <section id="view-map" class="view" hidden>
+      <div id="map"></div>
+    </section>
+
+    <section id="view-calendar" class="view" hidden>
+      <div id="calendar"></div>
+    </section>
+
+    <p id="status" class="status"></p>
+  </main>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="關閉">×</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>同好做的非官方小站，給一樣愛娃娃也愛邦邦的我們。<br>
+      看到漏掉的娃聚，歡迎投稿一起補上。</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
